@@ -1,10 +1,10 @@
 import pymysql.cursors  
  
 # Connectez- vous à la base de données.
-connection = pymysql.connect(host='192.168.5.134',
-                             user='root',
-                             password='1234',                             
-                             db='simplehr',
+connection = pymysql.connect(host='192.168.1.9',
+                             user='admin',
+                             password='Tamere66*',                             
+                             db='stock',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
  
