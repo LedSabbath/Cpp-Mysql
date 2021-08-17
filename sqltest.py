@@ -1,8 +1,8 @@
 import pymysql.cursors  
  
 # Connectez- vous à la base de données.
-connection = pymysql.connect(host='192.168.1.9',
-                             user='admin',
+connection = pymysql.connect(host='192.168.1.6',
+                             user='monsieur',
                              password='goodwood',                             
                              db='stock',
                              charset='utf8mb4',
@@ -10,24 +10,26 @@ connection = pymysql.connect(host='192.168.1.9',
  
 print ("connect successful!!")
  
-try:
-  
+sql = "Select pseudo, competence, sante_mental = %s "
  
-    with connection.cursor() as cursor:
-       
-        # SQL 
-        sql = "SELECT Dept_No, Dept_Name FROM Department "
-         
-        # Exécutez la requête (Execute Query).
-        cursor.execute(sql)
-         
-        print ("cursor.description: ", cursor.description)
+try :
+    cursor = connection.cursor()
  
-        print()
+    # Exécutez sql et passez- lui un paramètre.
+    cursor.execute(sql, ( 10 ) )
+     
+     
+     
+    print ("cursor.description: ", cursor.description)
+     
+    print()
+     
+    for row in cursor:
+        print (" ----------- ")
+        print ("pseudo: ", row["pseudo"])
+        print ("competence: ", row["competence"])
+        print ("sante_mental: ", row["sante_mental"])
  
-        for row in cursor:
-            print(row)
-             
 finally:
-    # Closez la connexion (Close connection).      
+    # Achevez la connexion
     connection.close()
